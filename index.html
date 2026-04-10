@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INE • Generador Profesional de Etiquetas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <div class="logo-group">
+                <img id="ineLogo" src="LOGO.jpg" alt="INE">
+                 <div><h1>Generador de Etiquetas INE • Bienes de Consumo</h1></div>
+            </div>           
+        </header>
+
+        <!-- Guía Conformación -->
+            <div class="guide" style="flex:1; min-width:300px;">
+                <h3>📋 Archivo de Conformación (debe tener exactamente estas columnas)</h3>
+                <div class="col-table">
+                    <div class="col-box important">A: Centro de Costo <span class="label-caja">(índice 0)</span></div>
+                    <div class="col-box important">C: Número de Activo <span class="label-caja">(índice 1)</span></div>
+                    <div class="col-box important">D: Descripción <span class="label-caja">(índice 3)</span></div>
+                    <div class="col-box">E: Marca</div>
+                    <div class="col-box">F: Modelo</div>
+                    <div class="col-box">G: Serie</div>
+                    <div class="col-box important">H: Ubicación Física <span class="label-caja">(índice 7)</span></div>
+                    <div class="col-box important">I: Condición del Bien <span class="label-caja">(índice 8) → Buena, Regular, Mala...</span></div>
+                    <div class="col-box important">L: Resguardante Actual <span class="label-caja">(índice 11)</span></div>
+                </div>
+                <small style="color:#28a745;">✅ Si tu archivo tiene las columnas en otro orden, usa Excel → Insertar columna y reordénalas.</small>
+            </div>
+
+            <div class="controls-card">
+            <div class="file-upload">
+                <label for="fileInput">📁 Cargar Excel (Bienes)</label>
+                <input type="file" id="fileInput" accept=".xlsx, .xls, .csv">
+                
+            </div>
+            <div id="status" class="status-box hidden"></div>
+        </div>
+
+       <div class="actions-grid">
+        <select id="resguardanteSelect">
+            <option value="">Selecciona un resguardante...</option>
+                </select>
+                <button onclick="showGoods()" class="btn btn-blue">📋 Ver + Vista Previa</button>
+                <button onclick="generatePDF()" class="btn btn-red">🖨️ PDF etiquetas</button>
+                <button onclick="generateResguardoPDF()" class="btn btn-purple">📄 PDF Resguardo </button>
+        </div>
+
+        <div id="preview" class="preview-grid hidden"></div>
+
+        <div id="tableContainer" class="table-container hidden">
+        <table>
+         <thead>
+            <tr>
+                <th>Centro</th>
+                <th>N° Activo</th>
+                <th>Descripción</th>
+                <th>Condición</th>
+                <th>Ubicación</th>
+            </tr>
+        </thead>
+        
+        <tbody id="tableBody"></tbody>
+            <tfoot>
+                <tr>
+                <td colspan="4" style="text-align: right; font-weight: bold;">Total de bienes:</td>
+                <td id="totalBienes" style="font-weight: bold; color: #dc2626; font-size: 1.1rem;">0</td>
+                </tr>
+            </tfoot>
+         </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
