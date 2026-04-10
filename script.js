@@ -236,7 +236,6 @@ async function generateResguardoPDF() {
     doc.text("DESCRIPCIÓN DEL BIEN", 65, y);
     doc.text("MARCA", 135, y);
     doc.text("SERIE", 170, y);
-  //  doc.text("COSTO", 175, y);
 
     y += 5;
 
