@@ -205,12 +205,11 @@ async function generateResguardoPDF() {
     doc.setFontSize(9);
     doc.text("INSTITUTO NACIONAL ELECTORAL", 105, 15, {align: "center"});
     doc.setFontSize(14);
-    doc.setFont('custom', 'bold'); 
-    doc.setTextColor(0);
+    doc.setTextColor(220, 38, 38);
     doc.text("RESGUARDO DE BIENES DE CONSUMO", 105, 22, {align: "center"});
-    doc.setFont("helvetica", "normal");
     
     doc.setFontSize(8);
+    doc.setTextColor(0);
     doc.text(`Fecha: ${fecha}     Hora: ${hora}`, 20, 30);
     doc.text("Página: 1", 170, 30);
 
@@ -237,6 +236,7 @@ async function generateResguardoPDF() {
     doc.text("DESCRIPCIÓN DEL BIEN", 65, y);
     doc.text("MARCA", 135, y);
     doc.text("SERIE", 170, y);
+  //  doc.text("COSTO", 175, y);
 
     y += 5;
 
@@ -256,12 +256,11 @@ async function generateResguardoPDF() {
             doc.setFontSize(9);
             doc.text("INSTITUTO NACIONAL ELECTORAL", 105, 15, {align: "center"});
             doc.setFontSize(14);
-            doc.setTextColor(0);
-            doc.setFont('custom', 'bold'); 
+            doc.setTextColor(220, 38, 38);
             doc.text("RESGUARDO DE BIENES DE CONSUMO", 105, 22, {align: "center"});
-            doc.setFont("helvetica", "normal");
             
             doc.setFontSize(8);
+            doc.setTextColor(0);
             doc.text(`Fecha: ${fecha}     Hora: ${hora}`, 20, 30);
             doc.text(`Página: ${pagina}`, 170, 30);
 
@@ -313,7 +312,7 @@ async function generateResguardoPDF() {
     //doc.text(`Valor Total: $ 0.00`, 140, y+10);
 
     // ==================== COMPROMISOS ====================
-    y += 16;
+    y += 15;
     doc.setFontSize(7);
     const compromisos = [
         "• ME COMPROMETO A CUIDAR, HACER BUEN USO Y APROVECHAR EL MOBILIARIO Y EQUIPO QUE TENGO BAJO MI RESGUARDO.",
